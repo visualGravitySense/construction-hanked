@@ -1,0 +1,105 @@
+graph TB
+    subgraph "Источники данных"
+        RHP[Riigihangete Portal<br/>riigihangete.ee]
+        EPP[E-procurement Portal]
+        HANKED[Hanked.ee<br/>Строительные тендеры]
+        OTHER[Другие источники]
+    end
+
+    subgraph "Слой сбора данных"
+        SCHEDULER[Планировщик задач<br/>Cron/Celery]
+        PARSER1[Parser 1<br/>Riigihangete]
+        PARSER2[Parser 2<br/>E-procurement]
+        PARSER3[Parser 3<br/>Hanked.ee]
+        PARSER4[Parser N<br/>Другие]
+    end
+
+    subgraph "Обработка и хранение"
+        QUEUE[Очередь сообщений<br/>RabbitMQ/Redis]
+        PROCESSOR[Обработчик данных<br/>Нормализация, дедупликация]
+        DB[(База данных<br/>PostgreSQL)]
+        CACHE[(Кэш<br/>Redis)]
+    end
+
+    subgraph "Бизнес-логика"
+        FILTER[Фильтрация<br/>По категориям, регионам]
+        MATCHER[Сопоставление<br/>С профилями клиентов]
+        NOTIFIER[Система уведомлений]
+    end
+
+    subgraph "Профили клиентов"
+        PROFILES[(Профили<br/>Категории, регионы, ключевые слова)]
+    end
+
+    subgraph "Доставка"
+        EMAIL[Email-рассылка<br/>SMTP/SendGrid]
+        API[REST API<br/>Для интеграций]
+        WEB[Web Dashboard<br/>Личный кабинет]
+        WEBHOOK[Webhooks<br/>Для внешних систем]
+    end
+
+    subgraph "Мониторинг"
+        LOGS[Логирование<br/>ELK Stack]
+        METRICS[Метрики<br/>Prometheus/Grafana]
+        ALERTS[Алерты<br/>Ошибки парсинга]
+    end
+
+    %% Связи источники -> парсеры
+    RHP --> PARSER1
+    EPP --> PARSER2
+    HANKED --> PARSER3
+    OTHER --> PARSER4
+
+    %% Планировщик управляет парсерами
+    SCHEDULER -.-> PARSER1
+    SCHEDULER -.-> PARSER2
+    SCHEDULER -.-> PARSER3
+    SCHEDULER -.-> PARSER4
+
+    %% Парсеры -> Очередь
+    PARSER1 --> QUEUE
+    PARSER2 --> QUEUE
+    PARSER3 --> QUEUE
+    PARSER4 --> QUEUE
+
+    %% Обработка данных
+    QUEUE --> PROCESSOR
+    PROCESSOR --> DB
+    PROCESSOR --> CACHE
+
+    %% Фильтрация и сопоставление
+    DB --> FILTER
+    FILTER --> MATCHER
+    PROFILES --> MATCHER
+
+    %% Уведомления
+    MATCHER --> NOTIFIER
+    NOTIFIER --> EMAIL
+    NOTIFIER --> WEBHOOK
+
+    %% API и веб-интерфейс
+    DB --> API
+    DB --> WEB
+    CACHE --> API
+    CACHE --> WEB
+
+    %% Мониторинг
+    PARSER1 -.-> LOGS
+    PARSER2 -.-> LOGS
+    PROCESSOR -.-> LOGS
+    NOTIFIER -.-> LOGS
+    
+    LOGS --> METRICS
+    METRICS --> ALERTS
+
+    style RHP fill:#e1f5ff
+    style EPP fill:#e1f5ff
+    style HANKED fill:#e1f5ff
+    style OTHER fill:#e1f5ff
+    style DB fill:#ffe1e1
+    style CACHE fill:#ffe1e1
+    style PROFILES fill:#ffe1e1
+    style EMAIL fill:#e1ffe1
+    style API fill:#e1ffe1
+    style WEB fill:#e1ffe1
+    style WEBHOOK fill:#e1ffe1
