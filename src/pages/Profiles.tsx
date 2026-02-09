@@ -45,40 +45,40 @@ export default function Profiles() {
   const [profiles, setProfiles] = React.useState<Profile[]>([
     {
       id: 1,
-      name: 'IT-услуги',
-      categories: ['IT-услуги', 'Разработка ПО'],
-      regions: ['Таллинн', 'Тарту'],
-      keywords: ['веб-разработка', 'приложение', 'система'],
+      name: 'IT-teenused',
+      categories: ['IT-teenused', 'Tarkvara arendus'],
+      regions: ['Tallinn', 'Tartu'],
+      keywords: ['veebiarendus', 'rakendus', 'süsteem'],
       email: 'it@example.com',
       active: true,
       matches: 12,
     },
     {
       id: 2,
-      name: 'Консалтинг',
-      categories: ['Консалтинг', 'Бизнес-услуги'],
-      regions: ['Таллинн'],
-      keywords: ['консалтинг', 'стратегия', 'трансформация'],
+      name: 'Konsultatsioon',
+      categories: ['Konsultatsioon', 'Äriteenused'],
+      regions: ['Tallinn'],
+      keywords: ['konsultatsioon', 'strateegia', 'transformatsioon'],
       email: 'consulting@example.com',
       active: true,
       matches: 8,
     },
     {
       id: 3,
-      name: 'Строительство',
-      categories: ['Строительство'],
-      regions: ['Таллинн', 'Тарту', 'Нарва'],
-      keywords: ['строительство', 'ремонт', 'реконструкция'],
+      name: 'Ehitus',
+      categories: ['Ehitus'],
+      regions: ['Tallinn', 'Tartu', 'Narva'],
+      keywords: ['ehitus', 'renoveerimine', 'rekonstrueerimine'],
       email: 'construction@example.com',
       active: false,
       matches: 5,
     },
     {
       id: 4,
-      name: 'Бетонные работы',
-      categories: ['Строительство', 'Бетонные работы'],
-      regions: ['Таллинн', 'Тарту', 'Нарва', 'Пярну'],
-      keywords: ['бетон', 'бетонные работы', 'фундамент', 'заливка бетона', 'бетонирование'],
+      name: 'Betoonitööd',
+      categories: ['Ehitus', 'Betoonitööd'],
+      regions: ['Tallinn', 'Tartu', 'Narva', 'Pärnu'],
+      keywords: ['betoon', 'betoonitööd', 'vundament', 'betooni valamine', 'betoneerimine'],
       email: 'concrete@example.com',
       active: true,
       matches: 3,
@@ -96,8 +96,8 @@ export default function Profiles() {
     active: true,
   });
 
-  const allCategories = ['IT-услуги', 'Консалтинг', 'Строительство', 'Бетонные работы', 'Мебель', 'Разработка ПО', 'Бизнес-услуги'];
-  const allRegions = ['Таллинн', 'Тарту', 'Нарва', 'Пярну', 'Вильянди'];
+  const allCategories = ['IT-teenused', 'Konsultatsioon', 'Ehitus', 'Betoonitööd', 'Mööbel', 'Tarkvara arendus', 'Äriteenused'];
+  const allRegions = ['Tallinn', 'Tartu', 'Narva', 'Pärnu', 'Viljandi'];
 
   const handleOpenDialog = (profile?: Profile) => {
     if (profile) {
@@ -157,7 +157,7 @@ export default function Profiles() {
   };
 
   const handleDelete = (id: number) => {
-    if (window.confirm('Вы уверены, что хотите удалить этот профиль?')) {
+    if (window.confirm('Kas olete kindel, et soovite selle profiili kustutada?')) {
       setProfiles(profiles.filter(p => p.id !== id));
     }
   };
@@ -178,10 +178,10 @@ export default function Profiles() {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Профили клиентов
+            Kliendi profiilid
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            Управление профилями для сопоставления с тендерами
+            Profiilide haldamine hangetega vastavusse viimiseks
           </Typography>
         </Box>
         <Button
@@ -198,7 +198,7 @@ export default function Profiles() {
             transition: 'all 0.3s ease',
           }}
         >
-          Создать профиль
+          Loo profiil
         </Button>
       </Box>
 
@@ -265,7 +265,7 @@ export default function Profiles() {
 
                 <Box sx={{ mb: 2 }}>
                   <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
-                    Категории:
+                    Kategooriad:
                   </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {profile.categories.map((cat) => (
@@ -276,7 +276,7 @@ export default function Profiles() {
 
                 <Box sx={{ mb: 2 }}>
                   <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
-                    Регионы:
+                    Piirkonnad:
                   </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {profile.regions.map((reg) => (
@@ -287,7 +287,7 @@ export default function Profiles() {
 
                 <Box sx={{ mb: 2 }}>
                   <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
-                    Ключевые слова:
+                    Märksõnad:
                   </Typography>
                   <Typography variant="body2">
                     {profile.keywords.join(', ')}
@@ -301,7 +301,7 @@ export default function Profiles() {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 2 }}>
                   <Chip
                     icon={profile.active ? <CheckCircleIcon /> : undefined}
-                    label={profile.active ? 'Активен' : 'Неактивен'}
+                    label={profile.active ? 'Aktiivne' : 'Mitteaktiivne'}
                     color={profile.active ? 'success' : 'default'}
                     size="small"
                     sx={{
@@ -310,7 +310,7 @@ export default function Profiles() {
                     }}
                   />
                   <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
-                    Совпадений: <strong>{profile.matches}</strong>
+                    Kokkulangevusi: <strong>{profile.matches}</strong>
                   </Typography>
                 </Box>
               </CardContent>
@@ -321,12 +321,12 @@ export default function Profiles() {
 
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
         <DialogTitle>
-          {editingProfile ? 'Редактировать профиль' : 'Создать профиль'}
+          {editingProfile ? 'Muuda profiili' : 'Loo profiil'}
         </DialogTitle>
         <DialogContent>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 1 }}>
             <TextField
-              label="Название профиля"
+              label="Profiili nimetus"
               fullWidth
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -339,11 +339,11 @@ export default function Profiles() {
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
             <FormControl fullWidth>
-              <InputLabel>Категории</InputLabel>
+              <InputLabel>Kategooriad</InputLabel>
               <Select
                 multiple
                 value={formData.categories}
-                label="Категории"
+                label="Kategooriad"
                 onChange={(e) => setFormData({ ...formData, categories: e.target.value as string[] })}
               >
                 {allCategories.map((cat) => (
@@ -352,11 +352,11 @@ export default function Profiles() {
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel>Регионы</InputLabel>
+              <InputLabel>Piirkonnad</InputLabel>
               <Select
                 multiple
                 value={formData.regions}
-                label="Регионы"
+                label="Piirkonnad"
                 onChange={(e) => setFormData({ ...formData, regions: e.target.value as string[] })}
               >
                 {allRegions.map((reg) => (
@@ -365,11 +365,11 @@ export default function Profiles() {
               </Select>
             </FormControl>
             <TextField
-              label="Ключевые слова (через запятую)"
+              label="Märksõnad (eralda komadega)"
               fullWidth
               value={formData.keywords}
               onChange={(e) => setFormData({ ...formData, keywords: e.target.value })}
-              helperText="Введите ключевые слова через запятую"
+              helperText="Sisesta märksõnad komadega eraldatult"
             />
             <FormControlLabel
               control={
@@ -378,14 +378,14 @@ export default function Profiles() {
                   onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
                 />
               }
-              label="Активный профиль"
+              label="Aktiivne profiil"
             />
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog}>Отмена</Button>
+          <Button onClick={handleCloseDialog}>Tühista</Button>
           <Button onClick={handleSave} variant="contained">
-            Сохранить
+            Salvesta
           </Button>
         </DialogActions>
       </Dialog>

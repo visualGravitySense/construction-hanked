@@ -10,91 +10,91 @@ import {
 
 const mermaidDiagram = `
 graph TB
-    subgraph "Источники данных"
+    subgraph "Andmeallikad"
         RHP[Riigihangete Portal<br/>riigihangete.ee]
         EPP[E-procurement Portal]
-        HANKED[Hanked.ee<br/>Строительные тендеры]
-        OTHER[Другие источники]
+        HANKED[Hanked.ee<br/>Ehitushangete portaal]
+        OTHER[Muud allikad]
     end
 
-    subgraph "Слой сбора данных"
-        SCHEDULER[Планировщик задач<br/>Cron/Celery]
+    subgraph "Andmete kogumise kiht"
+        SCHEDULER[Ülesannete plaanur<br/>Cron/Celery]
         PARSER1[Parser 1<br/>Riigihangete]
         PARSER2[Parser 2<br/>E-procurement]
         PARSER3[Parser 3<br/>Hanked.ee]
-        PARSER4[Parser N<br/>Другие]
+        PARSER4[Parser N<br/>Muud]
     end
 
-    subgraph "Обработка и хранение"
-        QUEUE[Очередь сообщений<br/>RabbitMQ/Redis]
-        PROCESSOR[Обработчик данных<br/>Нормализация, дедупликация]
-        DB[(База данных<br/>PostgreSQL)]
-        CACHE[(Кэш<br/>Redis)]
+    subgraph "Töötlemine ja salvestamine"
+        QUEUE[Sõnumijärjekord<br/>RabbitMQ/Redis]
+        PROCESSOR[Andmete töötleja<br/>Normaliseerimine, deduplikatsioon]
+        DB[(Andmebaas<br/>PostgreSQL)]
+        CACHE[(Vahemälu<br/>Redis)]
     end
 
-    subgraph "Бизнес-логика"
-        FILTER[Фильтрация<br/>По категориям, регионам]
-        MATCHER[Сопоставление<br/>С профилями клиентов]
-        NOTIFIER[Система уведомлений]
+    subgraph "Äriloogika"
+        FILTER[Filtreerimine<br/>Kategooriate, piirkondade järgi]
+        MATCHER[Vastavusse viimine<br/>Kliendi profiilidega]
+        NOTIFIER[Teavitussüsteem]
     end
 
-    subgraph "Профили клиентов"
-        PROFILES[(Профили<br/>Категории, регионы, ключевые слова)]
+    subgraph "Kliendi profiilid"
+        PROFILES[(Profiilid<br/>Kategooriad, piirkonnad, märksõnad)]
     end
 
-    subgraph "Доставка"
-        EMAIL[Email-рассылка<br/>SMTP/SendGrid]
-        API[REST API<br/>Для интеграций]
-        WEB[Web Dashboard<br/>Личный кабинет]
-        WEBHOOK[Webhooks<br/>Для внешних систем]
+    subgraph "Tarne"
+        EMAIL[E-kirjade saatmine<br/>SMTP/SendGrid]
+        API[REST API<br/>Integratsioonideks]
+        WEB[Veebijuhtpaneel<br/>Isiklik kabiinet]
+        WEBHOOK[Webhooks<br/>Väliste süsteemide jaoks]
     end
 
-    subgraph "Мониторинг"
-        LOGS[Логирование<br/>ELK Stack]
-        METRICS[Метрики<br/>Prometheus/Grafana]
-        ALERTS[Алерты<br/>Ошибки парсинга]
+    subgraph "Seire"
+        LOGS[Logimine<br/>ELK Stack]
+        METRICS[Mõõdikud<br/>Prometheus/Grafana]
+        ALERTS[Hoiatused<br/>Parsimise vead]
     end
 
-    %% Связи источники -> парсеры
+    %%
     RHP --> PARSER1
     EPP --> PARSER2
     HANKED --> PARSER3
     OTHER --> PARSER4
 
-    %% Планировщик управляет парсерами
+    %%
     SCHEDULER -.-> PARSER1
     SCHEDULER -.-> PARSER2
     SCHEDULER -.-> PARSER3
     SCHEDULER -.-> PARSER4
 
-    %% Парсеры -> Очередь
+    %%
     PARSER1 --> QUEUE
     PARSER2 --> QUEUE
     PARSER3 --> QUEUE
     PARSER4 --> QUEUE
 
-    %% Обработка данных
+    %%
     QUEUE --> PROCESSOR
     PROCESSOR --> DB
     PROCESSOR --> CACHE
 
-    %% Фильтрация и сопоставление
+    %%
     DB --> FILTER
     FILTER --> MATCHER
     PROFILES --> MATCHER
 
-    %% Уведомления
+    %%
     MATCHER --> NOTIFIER
     NOTIFIER --> EMAIL
     NOTIFIER --> WEBHOOK
 
-    %% API и веб-интерфейс
+    %%
     DB --> API
     DB --> WEB
     CACHE --> API
     CACHE --> WEB
 
-    %% Мониторинг
+    %%
     PARSER1 -.-> LOGS
     PARSER2 -.-> LOGS
     PROCESSOR -.-> LOGS
@@ -132,7 +132,7 @@ export default function Architecture() {
         setIsLoading(true);
         setError(null);
 
-        // Инициализация mermaid
+        // Mermaid init
         mermaid.initialize({
           startOnLoad: false,
           theme: 'default',
@@ -156,11 +156,9 @@ export default function Architecture() {
           },
         });
 
-        // Очистка контейнера
         if (mermaidRef.current) {
           mermaidRef.current.innerHTML = '';
           
-          // Рендеринг диаграммы
           const id = diagramIdRef.current;
           const { svg } = await mermaid.render(id, mermaidDiagram);
           
@@ -172,13 +170,13 @@ export default function Architecture() {
       } catch (err) {
         console.error('Error rendering mermaid diagram:', err);
         if (isMounted) {
-          setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
+          setError(err instanceof Error ? err.message : 'Tundmatu viga');
           setIsLoading(false);
         }
       }
     };
 
-    // Небольшая задержка для гарантии, что DOM готов
+    // Lühike viivitus DOMi valmiduse tagamiseks
     const timer = setTimeout(() => {
       renderDiagram();
     }, 100);
@@ -201,10 +199,10 @@ export default function Architecture() {
             color: '#212121',
           }}
         >
-          Архитектура системы
+          Süsteemi arhitektuur
         </Typography>
         <Typography variant="body1" sx={{ color: '#757575' }}>
-          Визуализация архитектуры системы парсинга тендеров
+          Hangete parsija süsteemi arhitektuuri visualiseerimine
         </Typography>
       </Box>
 
@@ -229,7 +227,7 @@ export default function Architecture() {
             }}
           >
             <CircularProgress sx={{ color: '#757575' }} />
-            <Typography sx={{ color: '#757575' }}>Загрузка диаграммы...</Typography>
+            <Typography sx={{ color: '#757575' }}>Diagrammi laadimine...</Typography>
           </Box>
         )}
         {error && (
@@ -245,7 +243,7 @@ export default function Architecture() {
             }}
           >
             <Typography variant="h6" sx={{ mb: 1, color: '#212121' }}>
-              Ошибка при загрузке диаграммы
+              Viga diagrammi laadimisel
             </Typography>
             <Typography variant="body2">{error}</Typography>
           </Box>
@@ -268,55 +266,55 @@ export default function Architecture() {
 
       <Box sx={{ mt: 4 }}>
         <Typography variant="h6" sx={{ mb: 2, color: '#212121', fontWeight: 600 }}>
-          Описание компонентов
+          Komponentide kirjeldus
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
           <Paper sx={{ p: 2, background: '#fafafa', border: '1px solid #e0e0e0' }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-              Источники данных
+              Andmeallikad
             </Typography>
             <Typography variant="body2" sx={{ color: '#757575' }}>
-              Внешние порталы тендеров: Riigihangete Portal, E-procurement Portal, Hanked.ee (строительные тендеры) и другие источники
+              Välishangete portaalid: Riigihangete Portal, E-procurement Portal, Hanked.ee (ehitushangete portaal) ja muud allikad
             </Typography>
           </Paper>
           <Paper sx={{ p: 2, background: '#fafafa', border: '1px solid #e0e0e0' }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-              Слой сбора данных
+              Andmete kogumise kiht
             </Typography>
             <Typography variant="body2" sx={{ color: '#757575' }}>
-              Планировщик задач и парсеры для каждого источника данных
+              Ülesannete plaanur ja parsijad iga andmeallika jaoks
             </Typography>
           </Paper>
           <Paper sx={{ p: 2, background: '#fafafa', border: '1px solid #e0e0e0' }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-              Обработка и хранение
+              Töötlemine ja salvestamine
             </Typography>
             <Typography variant="body2" sx={{ color: '#757575' }}>
-              Очередь сообщений, обработчик данных, база данных PostgreSQL и кэш Redis
+              Sõnumijärjekord, andmete töötleja, PostgreSQL andmebaas ja Redis vahemälu
             </Typography>
           </Paper>
           <Paper sx={{ p: 2, background: '#fafafa', border: '1px solid #e0e0e0' }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-              Бизнес-логика
+              Äriloogika
             </Typography>
             <Typography variant="body2" sx={{ color: '#757575' }}>
-              Фильтрация, сопоставление с профилями клиентов и система уведомлений
+              Filtreerimine, vastavusse viimine kliendi profiilidega ja teavitussüsteem
             </Typography>
           </Paper>
           <Paper sx={{ p: 2, background: '#fafafa', border: '1px solid #e0e0e0' }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-              Доставка
+              Tarne
             </Typography>
             <Typography variant="body2" sx={{ color: '#757575' }}>
-              Email-рассылка, REST API, Web Dashboard и Webhooks для внешних систем
+              E-kirjade saatmine, REST API, veebijuhtpaneel ja Webhooks väliste süsteemide jaoks
             </Typography>
           </Paper>
           <Paper sx={{ p: 2, background: '#fafafa', border: '1px solid #e0e0e0' }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-              Мониторинг
+              Seire
             </Typography>
             <Typography variant="body2" sx={{ color: '#757575' }}>
-              Логирование (ELK Stack), метрики (Prometheus/Grafana) и система алертов
+              Logimine (ELK Stack), mõõdikud (Prometheus/Grafana) ja hoiatused
             </Typography>
           </Paper>
         </Box>

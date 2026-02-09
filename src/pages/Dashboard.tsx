@@ -19,7 +19,6 @@ import { hankedTenders } from '../data/hankedTenders';
 export default function Dashboard() {
   const theme = useTheme();
   
-  // Подсчет реальных данных из парсера
   const concreteTendersCount = hankedTenders.length;
   const totalValue = hankedTenders.reduce((sum, t) => {
     const value = parseInt(t.value.replace('€', '').replace(',', ''));
@@ -28,15 +27,15 @@ export default function Dashboard() {
   
   const stats = [
     {
-      title: 'Всего тендеров',
+      title: 'Hangete kokku',
       value: concreteTendersCount.toString(),
-      change: `+${concreteTendersCount} новых`,
+      change: `+${concreteTendersCount} uut`,
       icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
       bgColor: '#f5f5f5',
       iconBg: '#212121',
     },
     {
-      title: 'Активных профилей',
+      title: 'Aktiivseid profiile',
       value: '45',
       change: '+3',
       icon: <PeopleIcon sx={{ fontSize: 48 }} />,
@@ -44,15 +43,15 @@ export default function Dashboard() {
       iconBg: '#424242',
     },
     {
-      title: 'Совпадений сегодня',
+      title: 'Kokkulangevusi täna',
       value: concreteTendersCount.toString(),
-      change: `+${concreteTendersCount} по бетонным работам`,
+      change: `+${concreteTendersCount} betoonitööde kohta`,
       icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
       bgColor: '#f5f5f5',
       iconBg: '#616161',
     },
     {
-      title: 'Отправлено уведомлений',
+      title: 'Saadetud teavitusi',
       value: '156',
       change: '+23',
       icon: <NotificationsActiveIcon sx={{ fontSize: 48 }} />,
@@ -62,10 +61,10 @@ export default function Dashboard() {
   ];
 
   const parserStatus = [
-    { name: 'Riigihangete Portal', status: 'active', lastRun: '2 мин назад', items: 234 },
-    { name: 'E-procurement Portal', status: 'active', lastRun: '5 мин назад', items: 189 },
-    { name: 'Hanked.ee', status: 'active', lastRun: '3 мин назад', items: 145 },
-    { name: 'Другие источники', status: 'active', lastRun: '10 мин назад', items: 67 },
+    { name: 'Riigihangete Portal', status: 'active', lastRun: '2 min tagasi', items: 234 },
+    { name: 'E-procurement Portal', status: 'active', lastRun: '5 min tagasi', items: 189 },
+    { name: 'Hanked.ee', status: 'active', lastRun: '3 min tagasi', items: 145 },
+    { name: 'Muud allikad', status: 'active', lastRun: '10 min tagasi', items: 67 },
   ];
 
   return (
@@ -80,10 +79,10 @@ export default function Dashboard() {
             color: '#212121',
           }}
         >
-          Панель управления
+          Juhtpaneel
         </Typography>
         <Typography variant="body1" sx={{ color: '#757575' }}>
-          Обзор системы парсинга тендеров
+          Hangete parsija süsteemi ülevaade
         </Typography>
       </Box>
 
@@ -141,7 +140,7 @@ export default function Dashboard() {
                       }}
                     >
                       <TrendingUpIcon sx={{ fontSize: 16, color: '#616161' }} />
-                      {stat.change} за последние 24 часа
+                      {stat.change} viimase 24 tunni jooksul
                     </Typography>
                   </Box>
                   <Box
@@ -172,7 +171,7 @@ export default function Dashboard() {
             }}
           >
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3, color: '#212121' }}>
-              Статус парсеров
+              Parsijate olek
             </Typography>
             <Box sx={{ mt: 2 }}>
               {parserStatus.map((parser, index) => (
@@ -236,7 +235,7 @@ export default function Dashboard() {
                       />
                     </Box>
                     <Typography variant="body2" sx={{ fontWeight: 500, minWidth: 100, textAlign: 'right', color: '#757575' }}>
-                      {parser.items} тендеров
+                      {parser.items} hange
                     </Typography>
                   </Box>
                 </Box>
@@ -254,7 +253,7 @@ export default function Dashboard() {
             }}
           >
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3, color: '#212121' }}>
-              Последние совпадения
+              Viimased kokkulangevused
             </Typography>
             <Box sx={{ mt: 2 }}>
               {hankedTenders.slice(0, 5).map((tender, i) => (
@@ -290,10 +289,10 @@ export default function Dashboard() {
                     </Typography>
                   </Box>
                   <Typography variant="caption" sx={{ display: 'block', color: '#757575' }}>
-                    Совпал с профилем "Бетонные работы" • {tender.value}
+                    Vastab profiilile "Betoonitööd" • {tender.value}
                   </Typography>
                   <Typography variant="caption" sx={{ display: 'block', mt: 0.5, fontSize: '0.7rem', color: '#9e9e9e' }}>
-                    {tender.region} • Срок: {tender.deadline}
+                    {tender.region} • Tähtaeg: {tender.deadline}
                   </Typography>
                 </Box>
               ))}

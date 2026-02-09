@@ -45,14 +45,13 @@ export default function Tenders() {
   const [selectedTender, setSelectedTender] = React.useState<any>(null);
   const [openDialog, setOpenDialog] = React.useState(false);
 
-  // Данные из парсера hanked.ee + дополнительные примеры
   const mockTenders = [
     {
       id: 1,
-      title: 'Разработка веб-приложения для государственного портала',
+      title: 'Veebirakenduse arendus riigiportaali jaoks',
       source: 'Riigihangete Portal',
-      category: 'IT-услуги',
-      region: 'Таллинн',
+      category: 'IT-teenused',
+      region: 'Tallinn',
       value: '€45,000',
       deadline: '2024-02-15',
       status: 'active',
@@ -60,10 +59,10 @@ export default function Tenders() {
     },
     {
       id: 2,
-      title: 'Услуги по обслуживанию серверного оборудования',
+      title: 'Serveriseadmete hooldusteenused',
       source: 'E-procurement Portal',
-      category: 'IT-услуги',
-      region: 'Тарту',
+      category: 'IT-teenused',
+      region: 'Tartu',
       value: '€12,500',
       deadline: '2024-02-20',
       status: 'active',
@@ -71,10 +70,10 @@ export default function Tenders() {
     },
     {
       id: 6,
-      title: 'Поставка офисной мебели',
+      title: 'Kontorimööbli tarnimine',
       source: 'Riigihangete Portal',
-      category: 'Мебель',
-      region: 'Нарва',
+      category: 'Mööbel',
+      region: 'Narva',
       value: '€8,900',
       deadline: '2024-02-18',
       status: 'active',
@@ -82,10 +81,10 @@ export default function Tenders() {
     },
     {
       id: 7,
-      title: 'Консалтинг по цифровой трансформации',
+      title: 'Digitaalse transformatsiooni konsultatsioon',
       source: 'E-procurement Portal',
-      category: 'Консалтинг',
-      region: 'Таллинн',
+      category: 'Konsultatsioon',
+      region: 'Tallinn',
       value: '€65,000',
       deadline: '2024-02-25',
       status: 'active',
@@ -93,16 +92,15 @@ export default function Tenders() {
     },
   ];
 
-  // Объединяем реальные данные из парсера с моковыми данными
   const tenders = [...hankedTenders, ...mockTenders];
 
-  const categories = ['Все', 'IT-услуги', 'Мебель', 'Консалтинг', 'Строительство', 'Бетонные работы'];
-  const regions = ['Все', 'Таллинн', 'Тарту', 'Нарва', 'Пярну'];
+  const categories = ['Kõik', 'IT-teenused', 'Mööbel', 'Konsultatsioon', 'Ehitus', 'Betoonitööd'];
+  const regions = ['Kõik', 'Tallinn', 'Tartu', 'Narva', 'Pärnu'];
 
   const filteredTenders = tenders.filter((tender) => {
     const matchesSearch = tender.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = !categoryFilter || categoryFilter === 'Все' || tender.category === categoryFilter;
-    const matchesRegion = !regionFilter || regionFilter === 'Все' || tender.region === regionFilter;
+    const matchesCategory = !categoryFilter || categoryFilter === 'Kõik' || tender.category === categoryFilter;
+    const matchesRegion = !regionFilter || regionFilter === 'Kõik' || tender.region === regionFilter;
     return matchesSearch && matchesCategory && matchesRegion;
   });
 
@@ -121,10 +119,10 @@ export default function Tenders() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Тендеры
+          Hangete nimekiri
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Список всех найденных тендеров с возможностью фильтрации
+          Kõik leitud hangete nimekiri filtreerimise võimalusega
         </Typography>
       </Box>
 
@@ -140,7 +138,7 @@ export default function Tenders() {
           <Grid item xs={12} md={4}>
             <TextField
               fullWidth
-              placeholder="Поиск по названию..."
+              placeholder="Otsi pealkirja järgi..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               InputProps={{
@@ -150,10 +148,10 @@ export default function Tenders() {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <FormControl fullWidth>
-              <InputLabel>Категория</InputLabel>
+              <InputLabel>Kategooria</InputLabel>
               <Select
                 value={categoryFilter}
-                label="Категория"
+                label="Kategooria"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
                 {categories.map((cat) => (
@@ -164,10 +162,10 @@ export default function Tenders() {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <FormControl fullWidth>
-              <InputLabel>Регион</InputLabel>
+              <InputLabel>Piirkond</InputLabel>
               <Select
                 value={regionFilter}
-                label="Регион"
+                label="Piirkond"
                 onChange={(e) => setRegionFilter(e.target.value)}
               >
                 {regions.map((reg) => (
@@ -187,7 +185,7 @@ export default function Tenders() {
                 setRegionFilter('');
               }}
             >
-              Сбросить
+              Lähtesta
             </Button>
           </Grid>
         </Grid>
@@ -208,14 +206,14 @@ export default function Tenders() {
                 background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${alpha(theme.palette.secondary?.main || theme.palette.primary.main, 0.1)} 100%)`,
               }}
             >
-              <TableCell sx={{ fontWeight: 600 }}>Название</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Источник</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Категория</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Регион</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Сумма</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Срок</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Статус</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Действия</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Nimetus</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Allikas</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Kategooria</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Piirkond</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Summa</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Tähtaeg</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Olek</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Tegevused</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -237,7 +235,7 @@ export default function Tenders() {
                   </Typography>
                   {tender.matched && (
                     <Chip
-                      label="Совпадение"
+                      label="Kokkulangevus"
                       color="success"
                       size="small"
                       sx={{ 
@@ -306,12 +304,11 @@ export default function Tenders() {
       {filteredTenders.length === 0 && (
         <Paper sx={{ p: 4, textAlign: 'center', mt: 2 }}>
           <Typography variant="body1" color="text.secondary">
-            Тендеры не найдены
+            Hange ei leitud
           </Typography>
         </Paper>
       )}
 
-      {/* Диалог с деталями тендера */}
       <Dialog 
         open={openDialog} 
         onClose={() => setOpenDialog(false)}
@@ -327,10 +324,10 @@ export default function Tenders() {
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
                 <Box>
                   <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-                    Описание
+                    Kirjeldus
                   </Typography>
                   <Typography variant="body2" sx={{ color: '#757575' }}>
-                    {selectedTender.description || 'Описание отсутствует'}
+                    {selectedTender.description || 'Kirjeldus puudub'}
                   </Typography>
                 </Box>
 
@@ -339,15 +336,15 @@ export default function Tenders() {
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#212121' }}>
-                      Заказчик
+                      Tellija
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#757575' }}>
-                      {selectedTender.buyer || 'Не указан'}
+                      {selectedTender.buyer || 'Määramata'}
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#212121' }}>
-                      Регион
+                      Piirkond
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#757575' }}>
                       {selectedTender.region}
@@ -355,7 +352,7 @@ export default function Tenders() {
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#212121' }}>
-                      Сумма
+                      Summa
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#757575', fontWeight: 600 }}>
                       {selectedTender.value}
@@ -363,7 +360,7 @@ export default function Tenders() {
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#212121' }}>
-                      Срок подачи
+                      Esitamise tähtaeg
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#757575' }}>
                       {selectedTender.deadline}
@@ -372,7 +369,7 @@ export default function Tenders() {
                   {selectedTender.published_date && (
                     <Grid item xs={6}>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#212121' }}>
-                        Дата публикации
+                        Avaldamise kuupäev
                       </Typography>
                       <Typography variant="body2" sx={{ color: '#757575' }}>
                         {selectedTender.published_date}
@@ -382,7 +379,7 @@ export default function Tenders() {
                   {selectedTender.cpv_code && (
                     <Grid item xs={6}>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#212121' }}>
-                        CPV код
+                        CPV kood
                       </Typography>
                       <Typography variant="body2" sx={{ color: '#757575' }}>
                         {selectedTender.cpv_code}
@@ -396,7 +393,7 @@ export default function Tenders() {
                     <Divider />
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-                        Найденные ключевые слова
+                        Leitud märksõnad
                       </Typography>
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                         {selectedTender.matched_keywords.map((keyword: string, idx: number) => (
@@ -412,7 +409,7 @@ export default function Tenders() {
                     <Divider />
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-                        Документы
+                        Dokumendid
                       </Typography>
                       <List dense>
                         {selectedTender.documents.map((doc: any, idx: number) => (
@@ -436,7 +433,7 @@ export default function Tenders() {
                     <Divider />
                     <Box>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#212121' }}>
-                        Ссылка на тендер
+                        Link hangile
                       </Typography>
                       <Link href={selectedTender.url} target="_blank" rel="noopener">
                         {selectedTender.url}
@@ -447,7 +444,7 @@ export default function Tenders() {
               </Box>
             </DialogContent>
             <DialogActions>
-              <Button onClick={() => setOpenDialog(false)}>Закрыть</Button>
+              <Button onClick={() => setOpenDialog(false)}>Sulge</Button>
               {selectedTender.url && (
                 <Button 
                   variant="contained" 
@@ -457,7 +454,7 @@ export default function Tenders() {
                     background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary?.main || theme.palette.primary.main} 100%)`,
                   }}
                 >
-                  Открыть на сайте
+                  Ava saidil
                 </Button>
               )}
             </DialogActions>

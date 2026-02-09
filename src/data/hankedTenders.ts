@@ -1,4 +1,4 @@
-// Данные о тендерах с hanked.ee (собраны парсером)
+// Andmed hanked.ee hangetest (kogutud parsijaga)
 export interface TenderDocument {
   name: string;
   url: string;
@@ -28,115 +28,115 @@ export interface Tender {
 export const hankedTenders: Tender[] = [
   {
     id: 1,
-    title: "Бетонные работы для жилого комплекса в Таллинне",
-    description: "Выполнение бетонных работ при строительстве жилого комплекса. Включает заливку фундамента, монолитных стен и перекрытий. Общая площадь бетонирования - 2500 м².",
+    title: "Betoonitööd elukompleksi jaoks Tallinnas",
+    description: "Betoonitööde teostamine elukompleksi ehitamisel. Sisaldab vundamendi valamist, monoliitseid seinu ja vahelagid. Betoneerimise üldpindala - 2500 m².",
     source: "Hanked.ee",
-    category: "Бетонные работы",
-    region: "Таллинн",
+    category: "Betoonitööd",
+    region: "Tallinn",
     value: "€125,000",
     deadline: "2026-01-31",
     published_date: "2026-01-11",
     buyer: "AS Eesti Kinnisvara",
     status: "active",
     matched: true,
-    matched_keywords: ["бетон", "бетонные работы", "фундамент"],
+    matched_keywords: ["betoon", "betoonitööd", "vundament"],
     cpv_code: "45210000",
     url: "https://www.mercell.com/et-ee/tender/demo-1",
     documents: [
-      { name: "Техническое задание.pdf", url: "https://example.com/doc1.pdf" },
-      { name: "Чертежи.pdf", url: "https://example.com/doc2.pdf" }
+      { name: "Tehniline ülesanne.pdf", url: "https://example.com/doc1.pdf" },
+      { name: "Joonised.pdf", url: "https://example.com/doc2.pdf" }
     ],
     found_at: "2026-01-16T16:34:51.855353",
     parsed_at: "2026-01-16T16:34:51.855353"
   },
   {
     id: 2,
-    title: "Заливка бетонного фундамента для административного здания",
-    description: "Бетонные работы по устройству фундамента административного здания в Тарту. Требуется заливка монолитного фундамента площадью 800 м², класс бетона B25.",
+    title: "Betoonvundamendi valamine haldushoone jaoks",
+    description: "Betoonitööd haldushoone vundamendi rajamiseks Tartus. Vajalik monoliitse vundamendi valamine pindalaga 800 m², betooniklass B25.",
     source: "Hanked.ee",
-    category: "Бетонные работы",
-    region: "Тарту",
+    category: "Betoonitööd",
+    region: "Tartu",
     value: "€85,000",
     deadline: "2026-02-07",
     published_date: "2026-01-13",
     buyer: "Tartu Linnavalitsus",
     status: "active",
     matched: true,
-    matched_keywords: ["бетон", "фундамент", "заливка бетона"],
+    matched_keywords: ["betoon", "vundament", "betooni valamine"],
     cpv_code: "45220000",
     url: "https://www.mercell.com/et-ee/tender/demo-2",
     documents: [
-      { name: "Проектная документация.pdf", url: "https://example.com/doc3.pdf" }
+      { name: "Projekti dokumentatsioon.pdf", url: "https://example.com/doc3.pdf" }
     ],
     found_at: "2026-01-16T16:34:51.855353",
     parsed_at: "2026-01-16T16:34:51.855353"
   },
   {
     id: 3,
-    title: "Бетонные работы по реконструкции дорожного покрытия",
-    description: "Выполнение бетонных работ при реконструкции участка автомобильной дороги в Нарве. Включает демонтаж старого покрытия, подготовку основания и заливку нового бетонного покрытия толщиной 25 см.",
+    title: "Betoonitööd teekatte rekonstrueerimisel",
+    description: "Betoonitööde teostamine maantee lõigu rekonstrueerimisel Narvas. Sisaldab vana katte demonteerimist, aluse ettevalmistust ja uue betoonkatte valamist paksusega 25 cm.",
     source: "Hanked.ee",
-    category: "Бетонные работы",
-    region: "Нарва",
+    category: "Betoonitööd",
+    region: "Narva",
     value: "€250,000",
     deadline: "2026-02-15",
     published_date: "2026-01-09",
     buyer: "Narva Linna Tööstus",
     status: "active",
     matched: true,
-    matched_keywords: ["бетон", "бетонные работы", "бетонирование"],
+    matched_keywords: ["betoon", "betoonitööd", "betoneerimine"],
     cpv_code: "45233140",
     url: "https://www.mercell.com/et-ee/tender/demo-3",
     documents: [
-      { name: "Технические условия.pdf", url: "https://example.com/doc4.pdf" },
-      { name: "Схема участка.pdf", url: "https://example.com/doc5.pdf" }
+      { name: "Tehnilised tingimused.pdf", url: "https://example.com/doc4.pdf" },
+      { name: "Krundi skeem.pdf", url: "https://example.com/doc5.pdf" }
     ],
     found_at: "2026-01-16T16:34:51.855353",
     parsed_at: "2026-01-16T16:34:51.855353"
   },
   {
     id: 4,
-    title: "Устройство железобетонных конструкций для складского комплекса",
-    description: "Бетонные работы по устройству железобетонных колонн, балок и перекрытий складского комплекса в Пярну. Объем бетонных работ - 1200 м³. Класс бетона B30.",
+    title: "Raudbetoonkonstruktsioonide paigaldus laokompleksi jaoks",
+    description: "Betoonitööd raudbetoonsammaste, talade ja vahelagide paigaldamiseks laokompleksis Pärnus. Betoonitööde maht - 1200 m³. Betooniklass B30.",
     source: "Hanked.ee",
-    category: "Бетонные работы",
-    region: "Пярну",
+    category: "Betoonitööd",
+    region: "Pärnu",
     value: "€180,000",
     deadline: "2026-02-03",
     published_date: "2026-01-14",
     buyer: "Pärnu Kaubanduskeskus OÜ",
     status: "active",
     matched: true,
-    matched_keywords: ["железобетон", "бетонные работы", "бетон"],
+    matched_keywords: ["raudbetoon", "betoonitööd", "betoon"],
     cpv_code: "45210000",
     url: "https://www.mercell.com/et-ee/tender/demo-4",
     documents: [
-      { name: "Рабочая документация.pdf", url: "https://example.com/doc6.pdf" },
-      { name: "Спецификация.pdf", url: "https://example.com/doc7.pdf" }
+      { name: "Töödokumentatsioon.pdf", url: "https://example.com/doc6.pdf" },
+      { name: "Spetsifikatsioon.pdf", url: "https://example.com/doc7.pdf" }
     ],
     found_at: "2026-01-16T16:34:51.855353",
     parsed_at: "2026-01-16T16:34:51.855353"
   },
   {
     id: 5,
-    title: "Бетонирование монолитных стен и перекрытий офисного здания",
-    description: "Выполнение бетонных работ по устройству монолитных несущих стен и перекрытий 5-этажного офисного здания в Таллинне. Площадь бетонирования - 3200 м². Требуется использование бетононасоса.",
+    title: "Monoliitsete seinte ja vahelagide betoneerimine kontorihones",
+    description: "Betoonitööde teostamine monoliitsete kandeseinte ja vahelagide paigaldamiseks 5-korruselises kontorihones Tallinnas. Betoneerimise pindala - 3200 m². Vajalik betoonipumba kasutamine.",
     source: "Hanked.ee",
-    category: "Бетонные работы",
-    region: "Таллинн",
+    category: "Betoonitööd",
+    region: "Tallinn",
     value: "€195,000",
     deadline: "2026-02-10",
     published_date: "2026-01-12",
     buyer: "Tallinna Ärikeskus AS",
     status: "active",
     matched: true,
-    matched_keywords: ["бетон", "бетонирование", "монолитные стены"],
+    matched_keywords: ["betoon", "betoneerimine", "monoliitsed seinad"],
     cpv_code: "45210000",
     url: "https://www.mercell.com/et-ee/tender/demo-5",
     documents: [
-      { name: "Архитектурный проект.pdf", url: "https://example.com/doc8.pdf" },
-      { name: "Конструктивный проект.pdf", url: "https://example.com/doc9.pdf" },
-      { name: "Смета.pdf", url: "https://example.com/doc10.pdf" }
+      { name: "Arhitektuuriprojekt.pdf", url: "https://example.com/doc8.pdf" },
+      { name: "Konstruktsiooniprojekt.pdf", url: "https://example.com/doc9.pdf" },
+      { name: "Kalkulatsioon.pdf", url: "https://example.com/doc10.pdf" }
     ],
     found_at: "2026-01-16T16:34:51.855353",
     parsed_at: "2026-01-16T16:34:51.855353"
