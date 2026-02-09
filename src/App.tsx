@@ -13,7 +13,7 @@ import './App.css';
 function App() {
   return (
     <AppTheme>
-      <BrowserRouter basename="/evocon-hanked">
+      <BrowserRouter basename="/construction-hanked">
         <MainLayout>
           <Routes>
             <Route path="/" element={<Dashboard />} />
