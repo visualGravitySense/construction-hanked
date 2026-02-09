@@ -58,31 +58,23 @@ export const inputsCustomizations: Components<Theme> = {
             },
             style: {
               color: 'white',
-              backgroundColor: gray[900],
-              backgroundImage: `linear-gradient(to bottom, ${gray[700]}, ${gray[800]})`,
-              boxShadow: `inset 0 1px 0 ${gray[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
-              border: `1px solid ${gray[700]}`,
+              backgroundColor: brand[500],
+              backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
+              boxShadow: `0 2px 8px ${alpha(brand[500], 0.35)}`,
+              border: 'none',
               '&:hover': {
+                backgroundColor: brand[600],
                 backgroundImage: 'none',
-                backgroundColor: gray[700],
-                boxShadow: 'none',
+                boxShadow: `0 4px 12px ${alpha(brand[500], 0.4)}`,
               },
               '&:active': {
-                backgroundColor: gray[800],
+                backgroundColor: brand[700],
               },
               ...theme.applyStyles('dark', {
-                color: 'black',
-                backgroundColor: gray[50],
-                backgroundImage: `linear-gradient(to bottom, ${gray[100]}, ${gray[50]})`,
-                boxShadow: 'inset 0 -1px 0  hsl(220, 30%, 80%)',
-                border: `1px solid ${gray[50]}`,
+                backgroundColor: brand[500],
+                backgroundImage: 'none',
                 '&:hover': {
-                  backgroundImage: 'none',
-                  backgroundColor: gray[300],
-                  boxShadow: 'none',
-                },
-                '&:active': {
-                  backgroundColor: gray[400],
+                  backgroundColor: brand[400],
                 },
               }),
             },
@@ -380,24 +372,32 @@ export const inputsCustomizations: Components<Theme> = {
     styleOverrides: {
       input: {
         padding: 0,
+        color: gray[800],
       },
       root: ({ theme }) => ({
         padding: '8px 12px',
-        color: (theme.vars || theme).palette.text.primary,
+        color: gray[800],
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        border: `1px solid ${(theme.vars || theme).palette.divider}`,
-        backgroundColor: (theme.vars || theme).palette.background.default,
-        transition: 'border 120ms ease-in',
+        border: `1px solid ${gray[300]}`,
+        backgroundColor: '#ffffff',
+        transition: 'border 120ms ease-in, box-shadow 120ms ease-in',
         '&:hover': {
           borderColor: gray[400],
+          backgroundColor: '#ffffff',
         },
         [`&.${outlinedInputClasses.focused}`]: {
-          outline: `3px solid ${alpha(brand[500], 0.5)}`,
+          outline: `2px solid ${alpha(brand[400], 0.4)}`,
+          outlineOffset: '1px',
           borderColor: brand[400],
+          backgroundColor: '#ffffff',
         },
         ...theme.applyStyles('dark', {
+          backgroundColor: gray[800],
+          color: gray[50],
+          borderColor: gray[600],
           '&:hover': {
             borderColor: gray[500],
+            backgroundColor: gray[800],
           },
         }),
         variants: [

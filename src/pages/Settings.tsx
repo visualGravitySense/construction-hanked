@@ -51,15 +51,12 @@ export default function Settings() {
           gutterBottom
           sx={{
             fontWeight: 700,
-            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary?.main || theme.palette.primary.main} 100%)`,
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: '#1a1a2e',
           }}
         >
           Süsteemi seaded
         </Typography>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1" sx={{ color: '#5f6368' }}>
           Hangete parsija süsteemi konfiguratsioon
         </Typography>
       </Box>
@@ -69,11 +66,12 @@ export default function Settings() {
           <Paper 
             sx={{ 
               p: 3,
-              background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.05)} 0%, ${alpha(theme.palette.secondary?.main || theme.palette.primary.main, 0.05)} 100%)`,
-              border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+              background: '#ffffff',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: '#1a1a2e' }}>
               Parsijate seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
@@ -118,11 +116,12 @@ export default function Settings() {
           <Paper 
             sx={{ 
               p: 3,
-              background: `linear-gradient(135deg, ${alpha(theme.palette.info.main, 0.05)} 0%, ${alpha(theme.palette.secondary?.main || theme.palette.info.main, 0.05)} 100%)`,
-              border: `1px solid ${alpha(theme.palette.info.main, 0.1)}`,
+              background: '#ffffff',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: '#1a1a2e' }}>
               Üldised seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
@@ -153,11 +152,12 @@ export default function Settings() {
           <Paper 
             sx={{ 
               p: 3,
-              background: `linear-gradient(135deg, ${alpha(theme.palette.success.main, 0.05)} 0%, ${alpha(theme.palette.secondary?.main || theme.palette.success.main, 0.05)} 100%)`,
-              border: `1px solid ${alpha(theme.palette.success.main, 0.1)}`,
+              background: '#ffffff',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: '#1a1a2e' }}>
               Andmebaasi seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
@@ -189,11 +189,12 @@ export default function Settings() {
           <Paper 
             sx={{ 
               p: 3,
-              background: `linear-gradient(135deg, ${alpha(theme.palette.warning.main, 0.05)} 0%, ${alpha(theme.palette.secondary?.main || theme.palette.warning.main, 0.05)} 100%)`,
-              border: `1px solid ${alpha(theme.palette.warning.main, 0.1)}`,
+              background: '#ffffff',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: '#1a1a2e' }}>
               Redisi seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
@@ -223,13 +224,7 @@ export default function Settings() {
               startIcon={<SaveIcon />}
               onClick={handleSave}
               sx={{
-                background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary?.main || theme.palette.primary.main} 100%)`,
-                boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
-                '&:hover': {
-                  boxShadow: `0 6px 16px ${alpha(theme.palette.primary.main, 0.4)}`,
-                  transform: 'translateY(-2px)',
-                },
-                transition: 'all 0.3s ease',
+                transition: 'all 0.2s ease',
               }}
             >
               Salvesta kõik seaded
