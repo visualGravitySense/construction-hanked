@@ -55,25 +55,27 @@ export default function MainLayout({ children }: MainLayoutProps) {
     <Box
       sx={{
         height: '100%',
-        background: '#ffffff',
+        background: 'linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%)',
+        borderRight: '1px solid rgba(0,0,0,0.06)',
       }}
     >
       <Toolbar
         sx={{
-          background: '#212121',
+          background: 'linear-gradient(135deg, #1976d2 0%, #1565c0 100%)',
           color: 'white',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
         }}
       >
         <Typography 
           variant="h6" 
           noWrap 
           component="div"
-          sx={{ fontWeight: 700, letterSpacing: 0.5 }}
+          sx={{ fontWeight: 700, letterSpacing: 0.3 }}
         >
           Tender Parser
         </Typography>
       </Toolbar>
-      <Divider />
+      <Divider sx={{ borderColor: 'rgba(0,0,0,0.06)' }} />
       <List sx={{ px: 1, py: 2 }}>
         {menuItems.map((item) => {
           const isSelected = location.pathname === item.path;
@@ -88,21 +90,21 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 sx={{
                   borderRadius: 2,
                   '&.Mui-selected': {
-                    background: '#f5f5f5',
-                    borderLeft: '3px solid #212121',
+                    background: 'rgba(25, 118, 210, 0.1)',
+                    borderLeft: '3px solid #1976d2',
                     '&:hover': {
-                      background: '#eeeeee',
+                      background: 'rgba(25, 118, 210, 0.14)',
                     },
                     '& .MuiListItemIcon-root': {
-                      color: '#212121',
+                      color: '#1976d2',
                     },
                     '& .MuiListItemText-primary': {
                       fontWeight: 600,
-                      color: '#212121',
+                      color: '#1565c0',
                     },
                   },
                   '&:hover': {
-                    background: '#fafafa',
+                    background: 'rgba(0,0,0,0.04)',
                     transform: 'translateX(4px)',
                   },
                   transition: 'all 0.2s ease',
@@ -110,7 +112,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
               >
                 <ListItemIcon
                   sx={{
-                    color: isSelected ? '#212121' : '#757575',
+                    color: isSelected ? '#1976d2' : '#5f6368',
                     minWidth: 40,
                   }}
                 >
@@ -121,6 +123,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   primaryTypographyProps={{
                     fontWeight: isSelected ? 600 : 400,
                   }}
+                  sx={{ '& .MuiListItemText-primary': { color: isSelected ? '#1565c0' : '#202124' } }}
                 />
               </ListItemButton>
             </ListItem>
@@ -201,22 +204,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           mt: 8,
           minHeight: '100vh',
-          backgroundImage: 'url(/pattern-2.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
+          background: '#f0f2f5',
           position: 'relative',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(255, 255, 255, 0.85)',
-            zIndex: 0,
-          },
         }}
       >
         <Box sx={{ position: 'relative', zIndex: 1 }}>
