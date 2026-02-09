@@ -41,7 +41,7 @@ export default function Notifications() {
       id: 1,
       type: 'email',
       recipient: 'it@example.com',
-      subject: 'Новое совпадение: Тендер #1001',
+      subject: 'Uus kokkulangevus: Hang #1001',
       status: 'sent',
       timestamp: '2024-01-15 10:30:00',
     },
@@ -49,7 +49,7 @@ export default function Notifications() {
       id: 2,
       type: 'webhook',
       recipient: 'https://api.example.com/webhook',
-      subject: 'Тендер #1002',
+      subject: 'Hang #1002',
       status: 'sent',
       timestamp: '2024-01-15 10:25:00',
     },
@@ -57,7 +57,7 @@ export default function Notifications() {
       id: 3,
       type: 'email',
       recipient: 'consulting@example.com',
-      subject: 'Новое совпадение: Тендер #1003',
+      subject: 'Uus kokkulangevus: Hang #1003',
       status: 'failed',
       timestamp: '2024-01-15 10:20:00',
     },
@@ -78,10 +78,10 @@ export default function Notifications() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Уведомления
+          Teavitused
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Настройка системы уведомлений
+          Teavitussüsteemi seadistamine
         </Typography>
       </Box>
 
@@ -106,7 +106,7 @@ export default function Notifications() {
               >
                 <EmailIcon sx={{ fontSize: 30 }} />
               </Box>
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>Email-рассылка</Typography>
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>E-kirjade saatmine</Typography>
             </Box>
 
             <FormControlLabel
@@ -116,7 +116,7 @@ export default function Notifications() {
                   onChange={(e) => setEmailEnabled(e.target.checked)}
                 />
               }
-              label="Включить email-уведомления"
+              label="Luba e-kirja teavitused"
               sx={{ mb: 3 }}
             />
 
@@ -156,7 +156,7 @@ export default function Notifications() {
                 <Button
                   variant="contained"
                   startIcon={<SaveIcon />}
-                  onClick={() => alert('Настройки сохранены')}
+                  onClick={() => alert('Seaded salvestatud')}
                   sx={{
                     background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary?.main || theme.palette.primary.main} 100%)`,
                     boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
@@ -167,7 +167,7 @@ export default function Notifications() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  Сохранить настройки
+                  Salvesta seaded
                 </Button>
               </Box>
             )}
@@ -204,7 +204,7 @@ export default function Notifications() {
                   onChange={(e) => setWebhookEnabled(e.target.checked)}
                 />
               }
-              label="Включить webhooks"
+              label="Luba webhooks"
               sx={{ mb: 3 }}
             />
 
@@ -216,12 +216,12 @@ export default function Notifications() {
                   value={webhookUrl}
                   onChange={(e) => setWebhookUrl(e.target.value)}
                   placeholder="https://api.example.com/webhook"
-                  helperText="URL для отправки уведомлений о совпадениях"
+                  helperText="URL kokkulangevuste teavituste saatmiseks"
                 />
                 <Button
                   variant="contained"
                   startIcon={<SaveIcon />}
-                  onClick={() => alert('Настройки сохранены')}
+                  onClick={() => alert('Seaded salvestatud')}
                   sx={{
                     background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary?.main || theme.palette.primary.main} 100%)`,
                     boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
@@ -232,7 +232,7 @@ export default function Notifications() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  Сохранить настройки
+                  Salvesta seaded
                 </Button>
               </Box>
             )}
@@ -242,7 +242,7 @@ export default function Notifications() {
         <Grid item xs={12}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
-              История уведомлений
+              Teavituste ajalugu
             </Typography>
             <List>
               {notificationHistory.map((notification, index) => (
@@ -255,7 +255,7 @@ export default function Notifications() {
                             {notification.type === 'email' ? 'Email' : 'Webhook'}
                           </Typography>
                           <Chip
-                            label={notification.status === 'sent' ? 'Отправлено' : 'Ошибка'}
+                            label={notification.status === 'sent' ? 'Saadetud' : 'Viga'}
                             color={notification.status === 'sent' ? 'success' : 'error'}
                             size="small"
                           />

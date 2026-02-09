@@ -38,13 +38,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const location = useLocation();
 
   const menuItems = [
-    { text: 'Главная', icon: <DashboardIcon />, path: '/' },
-    { text: 'Тендеры', icon: <AssignmentIcon />, path: '/tenders' },
-    { text: 'Профили клиентов', icon: <PeopleIcon />, path: '/profiles' },
-    { text: 'Уведомления', icon: <NotificationsIcon />, path: '/notifications' },
-    { text: 'Мониторинг', icon: <MonitorHeartIcon />, path: '/monitoring' },
-    { text: 'Архитектура', icon: <AccountTreeIcon />, path: '/architecture' },
-    { text: 'Настройки', icon: <SettingsIcon />, path: '/settings' },
+    { text: 'Avaleht', icon: <DashboardIcon />, path: '/' },
+    { text: 'Hangete nimekiri', icon: <AssignmentIcon />, path: '/tenders' },
+    { text: 'Kliendi profiilid', icon: <PeopleIcon />, path: '/profiles' },
+    { text: 'Teavitused', icon: <NotificationsIcon />, path: '/notifications' },
+    { text: 'Seire', icon: <MonitorHeartIcon />, path: '/monitoring' },
+    { text: 'Arhitektuur', icon: <AccountTreeIcon />, path: '/architecture' },
+    { text: 'Seaded', icon: <SettingsIcon />, path: '/settings' },
   ];
 
   const handleDrawerToggle = () => {
@@ -160,7 +160,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ fontWeight: 600, color: '#212121' }}>
-            Система парсинга тендеров
+            Hangete parsija süsteem
           </Typography>
         </Toolbar>
       </AppBar>

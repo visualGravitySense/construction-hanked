@@ -35,7 +35,7 @@ export default function Monitoring() {
     {
       name: 'Riigihangete Portal',
       status: 'active',
-      lastRun: '2 мин назад',
+      lastRun: '2 min tagasi',
       successRate: 98,
       itemsProcessed: 1234,
       errors: 2,
@@ -43,15 +43,15 @@ export default function Monitoring() {
     {
       name: 'E-procurement Portal',
       status: 'active',
-      lastRun: '5 мин назад',
+      lastRun: '5 min tagasi',
       successRate: 95,
       itemsProcessed: 890,
       errors: 5,
     },
     {
-      name: 'Другие источники',
+      name: 'Muud allikad',
       status: 'warning',
-      lastRun: '15 мин назад',
+      lastRun: '15 min tagasi',
       successRate: 88,
       itemsProcessed: 234,
       errors: 12,
@@ -63,21 +63,21 @@ export default function Monitoring() {
       id: 1,
       timestamp: '2024-01-15 10:45:00',
       source: 'Parser 1 - Riigihangete',
-      message: 'Timeout при подключении к источнику',
+      message: 'Ühenduse ajalõpp allikaga',
       severity: 'warning',
     },
     {
       id: 2,
       timestamp: '2024-01-15 10:30:00',
       source: 'Processor',
-      message: 'Ошибка дедупликации данных',
+      message: 'Andmete deduplikatsiooni viga',
       severity: 'error',
     },
     {
       id: 3,
       timestamp: '2024-01-15 10:15:00',
       source: 'Notifier',
-      message: 'Не удалось отправить email на it@example.com',
+      message: 'E-kirja saatmine aadressile it@example.com ebaõnnestus',
       severity: 'error',
     },
   ];
@@ -97,10 +97,10 @@ export default function Monitoring() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Мониторинг системы
+          Süsteemi seire
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Статус системы, метрики и логи
+          Süsteemi olek, mõõdikud ja logid
         </Typography>
       </Box>
 
@@ -244,18 +244,18 @@ export default function Monitoring() {
         <Grid item xs={12}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
-              Метрики парсеров
+              Parsijate mõõdikud
             </Typography>
             <TableContainer>
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Парсер</TableCell>
-                    <TableCell>Статус</TableCell>
-                    <TableCell>Последний запуск</TableCell>
-                    <TableCell>Успешность</TableCell>
-                    <TableCell>Обработано</TableCell>
-                    <TableCell>Ошибки</TableCell>
+                    <TableCell>Parsija</TableCell>
+                    <TableCell>Olek</TableCell>
+                    <TableCell>Viimane käivitamine</TableCell>
+                    <TableCell>Edukus</TableCell>
+                    <TableCell>Töödeldud</TableCell>
+                    <TableCell>Vead</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -265,7 +265,7 @@ export default function Monitoring() {
                       <TableCell>
                         <Chip
                           icon={parser.status === 'active' ? <CheckCircleIcon /> : <WarningIcon />}
-                          label={parser.status === 'active' ? 'Активен' : 'Предупреждение'}
+                          label={parser.status === 'active' ? 'Aktiivne' : 'Hoiatus'}
                           color={parser.status === 'active' ? 'success' : 'warning'}
                           size="small"
                         />
@@ -301,7 +301,7 @@ export default function Monitoring() {
         <Grid item xs={12}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
-              Последние ошибки и предупреждения
+              Viimased vead ja hoiatused
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
               {recentErrors.map((error) => (

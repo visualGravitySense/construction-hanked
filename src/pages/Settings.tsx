@@ -39,7 +39,7 @@ export default function Settings() {
   };
 
   const handleSave = () => {
-    alert('Настройки сохранены');
+    alert('Seaded salvestatud');
   };
 
   return (
@@ -57,10 +57,10 @@ export default function Settings() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Настройки системы
+          Süsteemi seaded
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Конфигурация системы парсинга тендеров
+          Hangete parsija süsteemi konfiguratsioon
         </Typography>
       </Box>
 
@@ -74,41 +74,41 @@ export default function Settings() {
             }}
           >
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-              Настройки парсеров
+              Parsijate seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <TextField
-                label="Интервал парсинга (минуты)"
+                label="Parsimise intervall (minutid)"
                 type="number"
                 fullWidth
                 value={settings.parserInterval}
                 onChange={(e) => handleChange('parserInterval', e.target.value)}
-                helperText="Как часто запускать парсеры"
+                helperText="Kui sageli parsijaid käivitada"
               />
               <TextField
-                label="Размер очереди"
+                label="Järjekorra suurus"
                 type="number"
                 fullWidth
                 value={settings.queueSize}
                 onChange={(e) => handleChange('queueSize', e.target.value)}
-                helperText="Максимальное количество элементов в очереди"
+                helperText="Maksimaalne elementide arv järjekorras"
               />
               <TextField
-                label="TTL кэша (секунды)"
+                label="Vahemälu TTL (sekundid)"
                 type="number"
                 fullWidth
                 value={settings.cacheTTL}
                 onChange={(e) => handleChange('cacheTTL', e.target.value)}
-                helperText="Время жизни данных в кэше"
+                helperText="Andmete kehtivusaeg vahemälus"
               />
               <TextField
-                label="Максимум попыток"
+                label="Maksimaalselt katseid"
                 type="number"
                 fullWidth
                 value={settings.maxRetries}
                 onChange={(e) => handleChange('maxRetries', e.target.value)}
-                helperText="Количество повторных попыток при ошибке"
+                helperText="Uuesti proovimiste arv vea korral"
               />
             </Box>
           </Paper>
@@ -123,7 +123,7 @@ export default function Settings() {
             }}
           >
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-              Общие настройки
+              Üldised seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -134,7 +134,7 @@ export default function Settings() {
                     onChange={(e) => handleChange('enableAutoMatching', e.target.checked)}
                   />
                 }
-                label="Автоматическое сопоставление с профилями"
+                label="Automaatne vastavusse viimine profiilidega"
               />
               <FormControlLabel
                 control={
@@ -143,7 +143,7 @@ export default function Settings() {
                     onChange={(e) => handleChange('enableNotifications', e.target.checked)}
                   />
                 }
-                label="Включить уведомления"
+                label="Luba teavitused"
               />
             </Box>
           </Paper>
@@ -158,7 +158,7 @@ export default function Settings() {
             }}
           >
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-              Настройки базы данных
+              Andmebaasi seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -194,7 +194,7 @@ export default function Settings() {
             }}
           >
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-              Настройки Redis
+              Redisi seaded
             </Typography>
             <Divider sx={{ mb: 3 }} />
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -232,7 +232,7 @@ export default function Settings() {
                 transition: 'all 0.3s ease',
               }}
             >
-              Сохранить все настройки
+              Salvesta kõik seaded
             </Button>
           </Box>
         </Grid>
